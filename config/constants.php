@@ -1,13 +1,13 @@
 <?php
 
 //CONTROLLERS
-define("CONTROLLERS", BASE_PATH . '/controllers/');
+define("CONTROLLERS", $_SERVER["DOCUMENT_ROOT"] . '/controllers/');
 
 //VIEWS
-define("VIEWS", BASE_PATH . '/views/');
+define("VIEWS", $_SERVER["DOCUMENT_ROOT"]. '/views/');
 
 //MODELS
-define("MODELS", BASE_PATH . '/models/');
+define("MODELS", $_SERVER["DOCUMENT_ROOT"] . '/models/');
 
 //RESOURCES
-define("RESOURCES", BASE_PATH . '/resources/');
+define("RESOURCES", $_SERVER["DOCUMENT_ROOT"] . '/resources/');
