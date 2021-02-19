@@ -20,7 +20,10 @@ if( isset( $_GET['id'] ) ){
  */
 function getAllSongs()
 {
-    echo 'all songs';
+    $data = getAll( );
+    foreach( $data as $employee ){
+        print_r( $employee['first_name'] . '<br>' );
+    }
     //
 }
 
