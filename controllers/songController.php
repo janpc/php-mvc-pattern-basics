@@ -6,6 +6,11 @@ require_once MODELS . "songModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
+if( isset( $_GET['id'] ) ){
+    getSongs( $_GET['id'] );
+}else{
+    getAllSongs();
+}
 
 
 /* ~~~ CONTROLLER FUNCTIONS ~~~ */
@@ -15,14 +20,16 @@ require_once MODELS . "songModel.php";
  */
 function getAllSongs()
 {
+    echo 'all songs';
     //
 }
 
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getSongs($request)
+function getSongs($id)
 {
+    echo 'Songs: ' . $id;
     //
 }
 

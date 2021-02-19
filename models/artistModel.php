@@ -1,7 +1,7 @@
 <?php
 
-function getArtists(){
+function getAll(){
 }
 
-function getArtistById($id){
+function getById($id){
 }

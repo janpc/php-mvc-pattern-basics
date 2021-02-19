@@ -6,6 +6,11 @@ require_once MODELS . "artistModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
+if( isset( $_GET['id'] ) ){
+    getArtist( $_GET['id'] );
+}else{
+    getAllArtists();
+}
 
 
 /* ~~~ CONTROLLER FUNCTIONS ~~~ */
@@ -15,15 +20,17 @@ require_once MODELS . "artistModel.php";
  */
 function getAllArtists()
 {
-    //
+    echo 'all Artists';
+    //ToDO implement the logic
 }
 
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getArtist($request)
+function getArtist($id)
 {
-    //
+    echo 'Artists: ' . $id;
+    //ToDO implement the logic
 }
 
 /**
@@ -31,5 +38,5 @@ function getArtist($request)
  */
 function error($errorMsg)
 {
-    require_once VIEWS . "/error/error.php";
+    require_once VIEWS . "error/error.php";
 }

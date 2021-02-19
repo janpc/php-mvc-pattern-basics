@@ -1,7 +1,7 @@
 <?php
 
-function getSongs(){
+function getAll(){
 }
 
-function getSongById($id){
+function getById($id){
 }
