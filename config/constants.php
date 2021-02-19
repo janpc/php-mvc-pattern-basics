@@ -11,4 +11,5 @@ define("MODELS", $_SERVER["DOCUMENT_ROOT"] . '/php-mvc-pattern-basics/models/');
 //RESOURCES
 define("RESOURCES", $_SERVER["DOCUMENT_ROOT"] . '/php-mvc-pattern-basics/resources/');
 
-//main
+//songs
+define("SONGS", $_SERVER["DOCUMENT_ROOT"] . '/php-mvc-pattern-basics/songs/');

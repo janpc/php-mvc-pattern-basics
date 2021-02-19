@@ -6,9 +6,9 @@ require_once MODELS . "songModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
-if( isset( $_GET['id'] ) ){
-    getSongs( $_GET['id'] );
-}else{
+if (isset($_GET['id'])) {
+    getSongs($_GET['id']);
+} else {
     getAllSongs();
 }
 
@@ -20,10 +20,12 @@ if( isset( $_GET['id'] ) ){
  */
 function getAllSongs()
 {
-    $data = getAll( );
-    foreach( $data as $employee ){
-        print_r( $employee['first_name'] . '<br>' );
-    }
+    $data = getAll();
+
+    $view = VIEWS . 'song/songDasboard.php';
+    include $view;
+    
+
     //
 }
 
@@ -32,8 +34,11 @@ function getAllSongs()
  */
 function getSongs($id)
 {
-    echo 'Songs: ' . $id;
-    //
+    $song = getById($id);
+
+    $view = VIEWS . 'song/song.php';
+    include $view;
+    
 }
 
 /**
