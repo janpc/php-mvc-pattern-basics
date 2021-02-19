@@ -20,8 +20,10 @@ if( isset( $_GET['id'] ) ){
  */
 function getAllArtists()
 {
-    echo 'all Artists';
-    //ToDO implement the logic
+    $data = getAll();
+
+    $view = VIEWS . 'artist/artistDashboard.php';
+    include $view;
 }
 
 /**
@@ -29,8 +31,9 @@ function getAllArtists()
  */
 function getArtist($id)
 {
-    echo 'Artists: ' . $id;
-    //ToDO implement the logic
+    $artist = getById($id);
+    $view = VIEWS . 'artist/artist.php';
+    include $view;
 }
 
 /**

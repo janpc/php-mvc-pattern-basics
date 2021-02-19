@@ -22,7 +22,7 @@ function getAllSongs()
 {
     $data = getAll();
 
-    $view = VIEWS . 'song/songDasboard.php';
+    $view = VIEWS . 'song/artistsDasboard.php';
     include $view;
     
 
