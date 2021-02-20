@@ -1,6 +1,37 @@
-<?php
-print_r($song['song_name'] . '<br><audio controls><source src="' . './music/' . $song['src'] . '"type="audio/mpeg" /></audio><br><img src="' . $song['cover'] . '"/><br>' . $song['album'] . '<br>' . $song['song_id'] . '<br>');
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <?php
+        echo '<title>' .$song['song_name'] . '</title>';
+    ?>
+    <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
+      rel="stylesheet">
+    <link rel="stylesheet" href="assets/css/song.css">
+    
+</head>
+<body>
+    <?php
+        echo "<div class='mainSong' >
+                <div class='mainSong__image' style='background-image: url(" . $song['cover'] . ");' href='index.php?controller=song&id=". $song['song_id'] . "'>
+                    <div class='mainSong__play__background'>
+                        <button class='material-icons mainSong__play' data-src='" . './music/' . $song['src'] ."'>play_arrow</button>
+                    </div>
+                </div>
+                <h2 class='mainSong__title'>" .
+                    $song['song_name']
+                . "</h2>
+                <div class='mainSong__artist__list'>";
 
-foreach ($song['artist'] as $artist) {
-    print_r($artist['artist_name'] . '<br><img src="' . $artist['picture'] . '"/><br>' . $artist['info'] . '<br>');
-}
+        foreach ($song['artist'] as $artist) {
+            echo "<a class='mainSong__artist'  href='index.php?controller=artist&id=". $artist['artist_id'] . "'>
+                    <div class='mainSong__artists__picture' style='background-image: url(" . $artist['picture'] . ");'></div>
+                    <p class='mainSong__artists__name'>" . $artist['artist_name'] . "</p>
+                </a>";
+        }
+        echo "</div></div>"
+    ?>
+</body>
+</html>
