@@ -1,0 +1,30 @@
+@import './constants.css';
+header{
+    position: absolute;
+    top: 0;
+    width: 100vw;
+    font-size: x-large;
+    font-family: 'Lato', sans-serif;
+}
+
+.header__home{
+    float: left;
+    color: white;
+    margin: 1em;
+}
+
+.header__links{
+    float: right;
+    color: white;
+    margin: 1em;
+}
+
+header>div>a{
+    color:white;
+    text-decoration: none;
+    margin: 0 10px;
+}
+
+header>div>a:hover, header>div>a:focus{
+    text-decoration: underline;
+}

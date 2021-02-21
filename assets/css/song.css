@@ -1,4 +1,5 @@
 @import './constants.css';
+@import "./header.css";
 
 body{
     background: linear-gradient(var(--blue), var(--green));
@@ -10,7 +11,7 @@ body{
 }
 
 .mainSong{
-    width: fit-content;
+    width: 500px;
     height: fit-content;
     margin: 0 auto;
     background: linear-gradient(to bottom left, var(--orange), var(--red));
@@ -35,19 +36,19 @@ body{
     display: flex;
     align-items: center;
     justify-content: center;
-    background: linear-gradient(to bottom right, #85dbcb00, #c38d9e00);
+    background: #c38d9e00;
     width: 100%;
     height: 100%;
     transition: all 0.5s ease-in-out;
 }
 
 .mainSong__play__background:hover, .mainSong__play__background:focus{
-    background: linear-gradient(to bottom right, #85dbcb66, #c38d9e66);
+    background: #c38d9e66;
 }
 
 
 .mainSong__play{
-    font-size: 120px;
+    font-size: 75px;
     background-color: transparent;
     border: 4px solid transparent;
     border-radius: 50%;
@@ -57,12 +58,17 @@ body{
     transition: all 0.75s ease-in-out;
     outline: none;
     opacity: 1;
+    width: 100px;
+    height: 100px;
+    text-align: center;
 }
 
 .mainSong__play__background:hover>.mainSong__play, .mainSong__play__background:focus>.mainSong__play{
-    color: #ffff;
+    color: white;
     border: 4px solid white;
 }
+
+
 
 .mainSong__title{
     font-size: 36px;
@@ -83,6 +89,7 @@ body{
     width: 100%;
     overflow: hidden;
     overflow-y: auto;
+    padding: 10px;
 
 }
 
@@ -91,7 +98,7 @@ body{
     flex-direction: column;
     width: 110px;
     align-items: center;
-    margin: 20px;
+    margin: 10px;
     text-decoration: none;
 }
 
@@ -104,7 +111,7 @@ body{
     border-radius: 50%;
     box-shadow: 1px 1px 5px #0008;
     border: 1px solid white;
-    filter: opacity(0.85);
+    filter: opacity(0.8);
     transition: all 0.3s ease-in-out;
 }
 
@@ -113,6 +120,7 @@ body{
     text-decoration: none;
     text-decoration-color: transparent;
     transition: all 0.3s ease-in-out;
+    text-align: center;
 }
 
 .mainSong__artist:hover .mainSong__artists__name, .mainSong__artist:focus .mainSong__artists__name{

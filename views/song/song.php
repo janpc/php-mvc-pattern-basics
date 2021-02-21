@@ -14,6 +14,7 @@
 </head>
 <body>
     <?php
+        include './assets/html/header.html';
         echo "<div class='mainSong' >
                 <div class='mainSong__image' style='background-image: url(" . $song['cover'] . ");' href='index.php?controller=song&id=". $song['song_id'] . "'>
                     <div class='mainSong__play__background'>
