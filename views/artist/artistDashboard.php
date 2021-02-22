@@ -28,7 +28,8 @@
 
         /* print_r('<img src="' . $artist['picture'] . '"/><br><a href="index.php?controller=artist&id='. $artist['artist_id'] . '">'. $artist['artist_name']. '</a><br><p>' . $artist['info'] . '</p>'); */
     }
-    echo "</section>";
+    echo "</section><a class='material-icons addButton' href='index.php?controller=artist&action=formAdd'> add </a>";
+    
     ?>
     
 </body>

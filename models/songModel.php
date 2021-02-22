@@ -21,6 +21,8 @@ function getAll()
             }
             array_push($data, $song);
         }
+    }else{
+        return "Error getting the music information.";
     }
 
     /* Close mysqli */
@@ -39,7 +41,7 @@ function getById($id)
 
     /* Check posible errors */
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
     /* Query */
     if ($result = $database->query("SELECT * FROM `songs` WHERE `song_id` =" . $id)) {
@@ -47,6 +49,8 @@ function getById($id)
         if ($artist = $database->query("SELECT * FROM artist_song INNER JOIN artists ON artist_song.artist_id = artists.artist_id WHERE `song_id` = " . $id)) {
             $data['artist'] = $artist;
         }
+    } else{
+        return "Error getting the song information.";
     }
 
     /* Close mysqli */
@@ -64,12 +68,14 @@ function getArtists()
 
     /* Check posible errors */
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     /* Query */
     if ($result = $database->query("SELECT * FROM artists ORDER by artist_name")) {
         $data = $result;
+    } else{
+        return "Error getting the artists information.";
     }
 
     /* Close mysqli */
@@ -105,11 +111,10 @@ function add($name, $cover, $album, $artists, $song)
             echo $query;
 
             if ($database->query($query)) {
-                echo 'ssssss';
-                return true;
+                return null;
             }
-
-
+        } else{
+            return "Error setting the song information.";
         }
 
         /* Close mysqli */

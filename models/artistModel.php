@@ -7,7 +7,7 @@ function getAll()
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     if ($result = $database->query("SELECT * FROM artists")) {
@@ -27,7 +27,7 @@ function getById($id)
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     if ($result = $database->query("SELECT * FROM `artists` WHERE `artist_id` =" . $id)) {
@@ -39,9 +39,23 @@ function getById($id)
         if ($songs) {
             $data['songs'] = $songs;
         }
+    } else{
+        return "Error getting the artist information";
     }
 
     $database->close();
 
     return $data;
+}
+
+function add( $name, $image, $info){
+    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+
+    $query = "INSERT INTO artists (artist_name, picture, info) VALUES ('" . $name . "', '" . $image . "',  '" . $info . "')";
+
+    if($database->query($query)){
+        return null;
+    }else{
+        return "Error setting the artist information";
+    }
 }

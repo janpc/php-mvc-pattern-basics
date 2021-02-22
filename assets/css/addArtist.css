@@ -2,7 +2,7 @@
 @import "./header.css";
 
 body{
-    background: linear-gradient(var(--blue), var(--green));
+    background: linear-gradient(var(--orange), var(--red));
     height: 100vh;
     display: flex;
     align-items: center;
@@ -10,8 +10,8 @@ body{
     padding: 0;
 }
 
-.addSong{
-    background: linear-gradient(var(--orange), var(--red));
+.addArtist{
+    background: linear-gradient(var(--blue), var(--green));
     border-radius: 10px;
     box-shadow: 2px 2px 10px #0008;
     margin: 0 auto;
@@ -23,17 +23,17 @@ body{
     font-size: 24px;
 }
 
-input, select, option{
+input, textarea{
     outline: none;
     border: 2px solid transparent;
 }
 
-input:focus, input:hover, select:focus, select:hover{
+input:focus, input:hover, textarea:focus, textarea:hover{
     border: 2px solid white;
 }
 
-input[type=text]{
-    background-color: var(--red);
+input[type=text], textarea{
+    background-color: var(--green);
     box-shadow: inset 1px 1px 5px #0008;
     border-radius: 5px;
     width: 400px;
@@ -44,46 +44,11 @@ input[type=text]{
     margin-bottom: 20px;
 }
 
-select{
-    width: 423px;
-    margin-top: 10px;
-    margin-bottom: 20px;
-    background-color: var(--red);
-    box-shadow: inset 1px 1px 5px #0008;
-    font-size: 20px;
-    color: white;
-    border-radius: 5px;
-    padding: 0.2em 0.5em;
-    outline: none;
+textarea{
+    height: 300px;
 }
 
-option{
-    border-radius: 5px;
-    outline: none;
-}
 
-option:hover, option:focus, option:active{
-    background-color: var(--orange);
-    border-radius: 5px;
-    padding: 0 0.5em;
-}
-
-label[for=song]{
-    background-color: transparent;
-    color: white;
-    border: none;
-    border-radius: 10px;
-    margin-top: 20px;
-    cursor: pointer;
-}
-
-label[for=song]:hover, label[for=song]:focus{
-    text-decoration: underline;
-}
-
-input[type=file]{
-    display:none;
-}
 
 input[type=submit]{
     float: right;
@@ -117,13 +82,13 @@ input[type=submit]:hover, input[type=submit]:focus{
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
-    background: var(--orange);
+    background: var(--blue);
     border-radius: 10px;
     border: 2px solid white;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
-    background: var(--red);
+    background: var(--green);
     border-radius: 10px;
   }

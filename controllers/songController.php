@@ -28,8 +28,12 @@ function getAllSongs()
 {
     $data = getAll();
 
-    $view = VIEWS . 'song/songDashboard.php';
-    include $view;
+    if (gettype($data) == 'string') {
+        error($data);
+    } else {
+        $view = VIEWS . 'song/songDashboard.php';
+        include $view;
+    }
     
 
     //
@@ -42,20 +46,35 @@ function getSongs($id)
 {
     $song = getById($id);
 
-    $view = VIEWS . 'song/song.php';
-    include $view;
+    if (gettype($song) == 'string') {
+        error($song);
+    } else {
+        $view = VIEWS . 'song/song.php';
+        include $view;
+    }
+    
     
 }
 
 function showFormAdd(){
     $artists = getArtists();
 
-    $view = VIEWS . 'song/addSong.php';
-    include $view;
+    if (gettype($artists) == 'string') {
+        error($artists);
+    } else {
+        $view = VIEWS . 'song/addSong.php';
+        include $view;
+    }
 }
 
 function addSong(){
-    add( $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
+    $error =add( $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
+
+    if (gettype($error) != null) {
+        error($error);
+    } else {
+        header('Location: index.php?controller=song');
+    }
 }
 
 /**
@@ -63,5 +82,6 @@ function addSong(){
  */
 function error($errorMsg)
 {
-    require_once VIEWS . "/error/error.php";
+    $error = $errorMsg;
+    include VIEWS . "error/error.php";
 }

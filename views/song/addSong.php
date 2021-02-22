@@ -29,7 +29,7 @@
         }
 
         echo "</select><br>
-                <label for='song'>Select song...</label><br>
+                <label for='song'>Select a song...</label><br>
                 <input id='song' name='song' type='file'><br><br>
                 <input type='submit' value='Submit'>
             </form>

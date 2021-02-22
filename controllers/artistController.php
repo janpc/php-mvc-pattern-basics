@@ -6,9 +6,15 @@ require_once MODELS . "artistModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
-if( isset( $_GET['id'] ) ){
-    getArtist( $_GET['id'] );
-}else{
+if (isset($_GET['id'])) {
+    getArtist($_GET['id']);
+} else if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'formAdd') {
+        showFormAdd();
+    } else if ($_GET['action'] == 'add') {
+        addArtist();
+    }
+} else {
     getAllArtists();
 }
 
@@ -22,8 +28,12 @@ function getAllArtists()
 {
     $data = getAll();
 
-    $view = VIEWS . 'artist/artistDashboard.php';
-    include $view;
+    if (gettype($data) == 'string') {
+        error($data);
+    } else {
+        $view = VIEWS . 'artist/artistDashboard.php';
+        include $view;
+    }
 }
 
 /**
@@ -32,8 +42,29 @@ function getAllArtists()
 function getArtist($id)
 {
     $artist = getById($id);
-    $view = VIEWS . 'artist/artist.php';
+
+    if (gettype($artist) == 'string') {
+        error($artist);
+    } else {
+        $view = VIEWS . 'artist/artist.php';
+        include $view;
+    }
+}
+
+function showFormAdd()
+{
+    $view = VIEWS . 'artist/addArtist.php';
     include $view;
+}
+
+function addArtist()
+{
+    $error = add($_POST['name'], $_POST['image'], $_POST['info']);
+    if ($error == null) {
+        header('Location: index.php?controller=artist');
+    } else {
+        error($error);
+    }
 }
 
 /**
@@ -41,5 +72,6 @@ function getArtist($id)
  */
 function error($errorMsg)
 {
-    require_once VIEWS . "error/error.php";
+    $error = $errorMsg;
+    include VIEWS . "error/error.php";
 }
