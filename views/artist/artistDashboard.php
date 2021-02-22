@@ -11,22 +11,25 @@
     
 </head>
 <body>
-    <section>
+    
     <?php
     include './assets/html/header.html';
+    echo "<section class='artistsContainer'>";
     foreach ($data as $artist) {
         echo "<article class='artist'>
-                    <a href='index.php?controller=song&id=". $artist['artist_id'] . "'>
-                        <div class='song__image' style='background-image: url(" . $artist['picture'] . ");' >
-                        </div>
-                    </a>
-                <a class='artist__name'>" . $artist['artist_name'] . "</a>
-            </article>
-        ";
+                <a href='index.php?controller=artist&id=". $artist['artist_id'] . "'>
+                    <div class='artist__image' style='background-image: url(" . $artist['picture'] . ");' >
+                    </div>
+                </a>
+                <a class='artist__name__container' href='index.php?controller=artist&id=". $artist['artist_id'] . "'>
+                    <h2 class='artist__name'>" . $artist['artist_name'] . "</h2>
+                </a>
+            </article>";
 
         /* print_r('<img src="' . $artist['picture'] . '"/><br><a href="index.php?controller=artist&id='. $artist['artist_id'] . '">'. $artist['artist_name']. '</a><br><p>' . $artist['info'] . '</p>'); */
     }
+    echo "</section>";
     ?>
-    </section>
+    
 </body>
 </html>
