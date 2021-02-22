@@ -1,0 +1,127 @@
+@import './constants.css';
+@import "./header.css";
+
+body{
+    background: linear-gradient(var(--blue), var(--green));
+    height: 100vh;
+    display: flex;
+    align-items: center;
+    margin: 0;
+    padding: 0;
+}
+
+.addSong{
+    background: linear-gradient(var(--orange), var(--red));
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #0008;
+    margin: 0 auto;
+    width: fit-content;
+    height: fit-content;
+    padding: 50px;
+    font-family: 'Lato', sans-serif;
+    color: white;
+    font-size: 24px;
+}
+
+input, select, option{
+    outline: none;
+    border: 2px solid transparent;
+}
+
+input:focus, input:hover, select:focus, select:hover{
+    border: 2px solid white;
+}
+
+input[type=text]{
+    background-color: var(--red);
+    box-shadow: inset 1px 1px 5px #0008;
+    border-radius: 5px;
+    width: 400px;
+    font-size: 20px;
+    color: white;
+    padding: 0.2em 0.5em;
+    margin-top: 10px;
+    margin-bottom: 20px;
+}
+
+select{
+    margin-top: 10px;
+    margin-bottom: 20px;
+    background-color: var(--red);
+    box-shadow: inset 1px 1px 5px #0008;
+    font-size: 20px;
+    color: white;
+    border-radius: 5px;
+    padding: 0.2em 0.5em;
+    outline: none;
+}
+
+option{
+    border-radius: 5px;
+    outline: none;
+}
+
+option:hover, option:focus, option:active{
+    background-color: var(--orange);
+    border-radius: 5px;
+    padding: 0 0.5em;
+}
+
+label[for=song]{
+    background-color: transparent;
+    color: white;
+    border: none;
+    border-radius: 10px;
+    margin-top: 20px;
+    cursor: pointer;
+}
+
+label[for=song]:hover, label[for=song]:focus{
+    text-decoration: underline;
+}
+
+input[type=file]{
+    display:none;
+}
+
+input[type=submit]{
+    background-color: var(--purple);
+    border: 2px solid var(--purple);
+    margin: 0 auto;
+    color: white;
+    padding: 0.5em 2em;
+    border-radius: 10px;
+    box-shadow: 2px 2px 10px #0008;
+    font-size: 20px;
+    cursor: pointer;
+}
+
+input[type=submit]:hover, input[type=submit]:focus{
+    border: 2px solid white;
+}
+
+
+/* width */
+::-webkit-scrollbar {
+    width: 12px;
+    
+  }
+  
+  /* Track */
+  ::-webkit-scrollbar-track {
+    background: transparent;
+    border-radius: 10px;
+  }
+  
+  /* Handle */
+  ::-webkit-scrollbar-thumb {
+    background: var(--orange);
+    border-radius: 10px;
+    border: 2px solid white;
+  }
+  
+  /* Handle on hover */
+  ::-webkit-scrollbar-thumb:hover {
+    background: var(--red);
+    border-radius: 10px;
+  }

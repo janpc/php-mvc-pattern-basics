@@ -34,7 +34,8 @@
             echo $artists;
             echo "</div></article>";
         }
-    ?>
-    </section>
+        echo "</section>
+        <a class='material-icons addButton' href='index.php?controller=song&action=formAdd'> add </a>";
+    ?> 
 </body>
 </html>

@@ -8,6 +8,12 @@ require_once MODELS . "songModel.php";
 // TODO Implement the logic
 if (isset($_GET['id'])) {
     getSongs($_GET['id']);
+} else if(isset($_GET['action'])){
+    if( $_GET['action'] == 'formAdd' ){
+        showFormAdd();
+    } else if( $_GET['action'] == 'add' ){
+        addSong();
+    }
 } else {
     getAllSongs();
 }
@@ -39,6 +45,17 @@ function getSongs($id)
     $view = VIEWS . 'song/song.php';
     include $view;
     
+}
+
+function showFormAdd(){
+    $artists = getArtists();
+
+    $view = VIEWS . 'song/addSong.php';
+    include $view;
+}
+
+function addSong(){
+    add( $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
 }
 
 /**
