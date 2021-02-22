@@ -1,0 +1,39 @@
+@import "./constants.css";
+@import "./header.css";
+
+a {
+  outline: none;
+}
+
+body {
+  background: linear-gradient( var(--orange), var(--red));
+  height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: space-evenly;
+  margin: 0;
+  padding: 0;
+}
+
+.artist{
+  width: 400px;
+  height: fit-content;
+
+}
+
+.artist__image{
+  width: 400px;
+  height: 400px;
+  background-repeat: no-repeat;
+  background-position: center;
+  background-size: cover;
+  border-radius: 10px;
+  overflow: hidden;
+  transition: all 0.5s ease-in-out;
+  margin-bottom: 24px;
+}
+
+.artist__name{
+
+
+}

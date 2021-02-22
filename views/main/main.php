@@ -12,12 +12,7 @@
     
 </head>
 <body>
-    <?php
-        echo "
-            <a class='main__songs' href='index.php?controller=song'>Songs</a>
-            <a class='main__artists' href='index.php?controller=artist'>Artists</a>
-        ";
-    ?>
-    </section>
+    <a class='main__songs' href='index.php?controller=song'>Songs</a>
+    <a class='main__artists' href='index.php?controller=artist'>Artists</a>
 </body>
 </html>
