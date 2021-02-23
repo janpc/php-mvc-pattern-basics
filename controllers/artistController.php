@@ -6,14 +6,20 @@ require_once MODELS . "artistModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
-if (isset($_GET['id'])) {
-    getArtist($_GET['id']);
-} else if (isset($_GET['action'])) {
+if (isset($_GET['action'])) {
     if ($_GET['action'] == 'formAdd') {
         showFormAdd();
     } else if ($_GET['action'] == 'add') {
         addArtist();
+    } else if ($_GET['action'] == 'formUpdate') {
+        showFormUpdate($_GET['id']);
+    } else if ($_GET['action'] == 'update') {
+        updateSong($_GET['id']);
+    } else if ($_GET['action'] == 'delete') {
+        deleteArtist($_GET['id']);
     }
+} else if (isset($_GET['id'])) {
+    getArtist($_GET['id']);
 } else {
     getAllArtists();
 }
@@ -64,6 +70,39 @@ function addArtist()
         header('Location: index.php?controller=artist');
     } else {
         error($error);
+    }
+}
+
+function showFormUpdate($id)
+{
+    $artist = getById($id);
+
+    if (gettype($artist) == 'string') {
+        error($artist);
+    } else {
+        $view = VIEWS . 'artist/addArtist.php';
+        include $view;
+    }
+}
+
+function updateSong($id)
+{
+    $error = update($id, $_POST['name'], $_POST['image'], $_POST['info']);
+    if ($error == null) {
+        header('Location: index.php?controller=artist');
+    } else {
+        error($error);
+    }
+}
+
+function deleteArtist($id)
+{
+    $error = delete($id);
+
+    if ($error != null) {
+        error($error);
+    } else {
+        header('Location: index.php?controller=artist');
     }
 }
 

@@ -13,9 +13,7 @@ if( isset( $_GET['controller'] ) && file_exists (  CONTROLLERS . $_GET['controll
 
     $controller = CONTROLLERS . $_GET['controller'] . 'Controller.php';
     include $controller;
-
-    /* call_user_func('include', $controller); */
-
+    
 }else{
     $main = VIEWS . 'main/main.php';
     include $main;

@@ -20,6 +20,8 @@ function getAll()
 }
 
 
+
+
 function getById($id)
 {
     include 'models/databaseConection.php';
@@ -48,6 +50,9 @@ function getById($id)
     return $data;
 }
 
+
+
+
 function add( $name, $image, $info){
     include 'models/databaseConection.php';
 
@@ -58,4 +63,48 @@ function add( $name, $image, $info){
     }else{
         return "Error setting the artist information";
     }
+}
+
+
+
+
+
+function update($id, $name, $picture, $info){
+
+    include 'models/databaseConection.php';
+
+    if ($database->connect_errno) {
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+    }
+
+    $query = "UPDATE artists SET artist_name = '" . $name . "', picture = '" . $picture . "', info = '" . $info . "' WHERE artist_id = '" . $id . "'";
+
+    if ($database->query($query)) {
+        return null;
+    } else {
+        return "Error upadating the artist information.";
+    }
+
+    $database->close();
+}
+
+
+
+
+function delete($id){
+    include 'models/databaseConection.php';
+
+    if ($database->connect_errno) {
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+    }
+
+    $query = "DELETE FROM artists WHERE artist_id = '" . $id . "'";
+
+    if ($database->query($query)) {
+        return null;
+    } else {
+        return "Error getting the deleting artist.";
+    }
+
+    $database->close();
 }

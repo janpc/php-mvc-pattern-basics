@@ -39,6 +39,7 @@
         }
 
         echo "</div>";
+        echo "<a class='material-icons editButton' href='index.php?controller=artist&action=formUpdate&id=" . $artist['artist_id'] . "'> edit </a>";
 
 
         
