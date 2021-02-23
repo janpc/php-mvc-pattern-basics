@@ -4,15 +4,12 @@ function getAll()
 {
     $data = null;
 
-    /* initialize mysqli */
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
-    /* Check posible errors */
     if ($database->connect_errno) {
         echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
-    /* Query */
     if ($result = $database->query("SELECT * FROM songs")) {
         $data = [];
         foreach ($result as $song) {
@@ -21,11 +18,10 @@ function getAll()
             }
             array_push($data, $song);
         }
-    }else{
+    } else {
         return "Error getting the music information.";
     }
 
-    /* Close mysqli */
     $database->close();
 
     return $data;
@@ -36,24 +32,20 @@ function getById($id)
 
     $data = null;
 
-    /* initialize mysqli */
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
-    /* Check posible errors */
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
-    /* Query */
     if ($result = $database->query("SELECT * FROM `songs` WHERE `song_id` =" . $id)) {
         $data = $result->fetch_assoc();
         if ($artist = $database->query("SELECT * FROM artist_song INNER JOIN artists ON artist_song.artist_id = artists.artist_id WHERE `song_id` = " . $id)) {
             $data['artist'] = $artist;
         }
-    } else{
+    } else {
         return "Error getting the song information.";
     }
 
-    /* Close mysqli */
     $database->close();
 
     return $data;
@@ -63,22 +55,17 @@ function getArtists()
 {
     $data = null;
 
-    /* initialize mysqli */
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
-    /* Check posible errors */
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
-
-    /* Query */
     if ($result = $database->query("SELECT * FROM artists ORDER by artist_name")) {
         $data = $result;
-    } else{
+    } else {
         return "Error getting the artists information.";
     }
 
-    /* Close mysqli */
     $database->close();
 
     return $data;
@@ -103,8 +90,8 @@ function add($name, $cover, $album, $artists, $song)
             $res = $database->query("SELECT song_id FROM `songs` WHERE song_name ='" . $name . "' ORDER by song_id DESC LIMIT 1");
             $id = $res->fetch_assoc()['song_id'];
 
-            $query="INSERT INTO artist_song (song_id, artist_id) VALUES ";
-            foreach($artists as $artist){
+            $query = "INSERT INTO artist_song (song_id, artist_id) VALUES ";
+            foreach ($artists as $artist) {
                 $query .= "(" . $id . ", " . $artist . "),";
             }
             $query = substr($query, 0, -1);
@@ -113,16 +100,50 @@ function add($name, $cover, $album, $artists, $song)
             if ($database->query($query)) {
                 return null;
             }
-        } else{
+        } else {
             return "Error setting the song information.";
         }
 
-        /* Close mysqli */
         $database->close();
     }
 }
 
+function update($id, $name, $cover, $album, $artists){
 
+    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+
+    if ($database->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+    }
+
+    $query = "UPDATE songs SET song_name = '" . $name . "', cover = '" . $cover . "', album = '" . $album . "' WHERE song_id = '" . $id . "'";
+
+    if ($database->query($query)) {
+        return null;
+    } else {
+        return "Error upadating the song information.";
+    }
+
+    $database->close();
+}
+
+function delete($id){
+    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+
+    if ($database->connect_errno) {
+        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+    }
+
+    $query = "DELETE FROM songs WHERE song_id = '" . $id . "'";
+
+    if ($database->query($query)) {
+        return null;
+    } else {
+        return "Error getting the deleting song.";
+    }
+
+    $database->close();
+}
 
 
 

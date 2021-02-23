@@ -6,14 +6,20 @@ require_once MODELS . "songModel.php";
 
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
-if (isset($_GET['id'])) {
-    getSongs($_GET['id']);
-} else if(isset($_GET['action'])){
-    if( $_GET['action'] == 'formAdd' ){
+if (isset($_GET['action'])) {
+    if ($_GET['action'] == 'formAdd') {
         showFormAdd();
-    } else if( $_GET['action'] == 'add' ){
+    } else if ($_GET['action'] == 'add') {
         addSong();
+    } else if ($_GET['action'] == 'formUpdate') {
+        showFormUpdate($_GET['id']);
+    } else if ($_GET['action'] == 'update') {
+        updateSong($_GET['id']);
+    } else if ($_GET['action'] == 'delete') {
+        deleteSong($_GET['id']);
     }
+} else if (isset($_GET['id'])) {
+    getSongs($_GET['id']);
 } else {
     getAllSongs();
 }
@@ -34,7 +40,7 @@ function getAllSongs()
         $view = VIEWS . 'song/songDashboard.php';
         include $view;
     }
-    
+
 
     //
 }
@@ -52,11 +58,10 @@ function getSongs($id)
         $view = VIEWS . 'song/song.php';
         include $view;
     }
-    
-    
 }
 
-function showFormAdd(){
+function showFormAdd()
+{
     $artists = getArtists();
 
     if (gettype($artists) == 'string') {
@@ -67,15 +72,58 @@ function showFormAdd(){
     }
 }
 
-function addSong(){
-    $error =add( $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
+function addSong()
+{
+    $error = add($_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
 
-    if (gettype($error) != null) {
+    if ($error != null) {
         error($error);
     } else {
         header('Location: index.php?controller=song');
     }
 }
+
+function showFormUpdate($id)
+{
+
+    $song = getById($id);
+    $artists = getArtists();
+
+    if (gettype($song) == 'string') {
+        error($song);
+    } else {
+
+        if (gettype($artists) == 'string') {
+            error($artists);
+        } else {
+            $view = VIEWS . 'song/addSong.php';
+            include $view;
+        }
+    }
+}
+
+function updateSong($id)
+{
+    $error = update($id, $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists']);
+
+    if ($error != null) {
+        error($error);
+    } else {
+        header('Location: index.php?controller=song');
+    }
+}
+
+function deleteSong($id)
+{
+    $error = delete($id);
+
+    if ($error != null) {
+        error($error);
+    } else {
+        header('Location: index.php?controller=song');
+    }
+}
+
 
 /**
  * This function includes the error view with a message

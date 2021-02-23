@@ -32,7 +32,8 @@
                     <p class='mainSong__artists__name'>" . $artist['artist_name'] . "</p>
                 </a>";
         }
-        echo "</div></div>"
+        echo "</div></div>";
+        echo "<a class='material-icons editButton' href='index.php?controller=song&action=formUpdate&id=" . $song['song_id'] . "'> edit </a>";
     ?>
 </body>
 </html>

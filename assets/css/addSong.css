@@ -103,6 +103,25 @@ input[type=submit]:hover, input[type=submit]:focus{
 }
 
 
+.deleteButton{
+    position:absolute;
+    bottom: 0.7em;
+    right: 1.2em;
+    box-shadow: 2px 2px 10px #0008;
+    font-size: 50px;
+    padding: 12px;
+    border: 2px solid var(--purple);
+    text-decoration: none;
+    border-radius: 50%;
+    color: white;
+    background-color: var(--purple);
+  
+  }
+  .deleteButton:hover, .addButton:focus{
+    border: 2px solid white;
+  }
+
+
 /* width */
 ::-webkit-scrollbar {
     width: 12px;
