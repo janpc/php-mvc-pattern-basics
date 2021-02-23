@@ -2,9 +2,9 @@
 
 function getAll()
 {
-    $data = null;
+    include 'models/databaseConection.php';
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    $data = null;
 
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
@@ -22,9 +22,9 @@ function getAll()
 
 function getById($id)
 {
-    $data = null;
+    include 'models/databaseConection.php';
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    $data = null;
 
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
@@ -49,7 +49,7 @@ function getById($id)
 }
 
 function add( $name, $image, $info){
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     $query = "INSERT INTO artists (artist_name, picture, info) VALUES ('" . $name . "', '" . $image . "',  '" . $info . "')";
 

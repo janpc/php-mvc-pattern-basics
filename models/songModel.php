@@ -4,10 +4,10 @@ function getAll()
 {
     $data = null;
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     if ($result = $database->query("SELECT * FROM songs")) {
@@ -37,7 +37,7 @@ function getById($id)
 
     $data = null;
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
@@ -65,7 +65,7 @@ function getArtists()
 {
     $data = null;
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     if ($database->connect_errno) {
         return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
@@ -95,7 +95,7 @@ function add($name, $cover, $album, $artists, $song)
     if ($uploadError) {
         return $uploadError;
     } else {
-        $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+        include 'models/databaseConection.php';
         if ($database->connect_errno) {
             return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
         }
@@ -132,10 +132,10 @@ function add($name, $cover, $album, $artists, $song)
 
 function update($id, $name, $cover, $album, $artists){
 
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     $query = "UPDATE songs SET song_name = '" . $name . "', cover = '" . $cover . "', album = '" . $album . "' WHERE song_id = '" . $id . "'";
@@ -155,10 +155,10 @@ function update($id, $name, $cover, $album, $artists){
 
 
 function delete($id){
-    $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
+    include 'models/databaseConection.php';
 
     if ($database->connect_errno) {
-        echo "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
+        return "Failed to connect to MySQL: (" . $database->connect_errno . ") " . $database->connect_error;
     }
 
     $query = "DELETE FROM songs WHERE song_id = '" . $id . "'";
