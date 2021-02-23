@@ -7,7 +7,7 @@
     <title>Add Artist</title>
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
-    <link rel="stylesheet" href="assets/css/addArtist.css">
+    <link rel="stylesheet" href="assets/css/error.css">
     
 </head>
 <body>

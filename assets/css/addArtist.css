@@ -77,18 +77,18 @@ input[type=submit]:hover, input[type=submit]:focus{
   /* Track */
   ::-webkit-scrollbar-track {
     background: transparent;
-    border-radius: 10px;
+    border-radius: 5px;
   }
   
   /* Handle */
   ::-webkit-scrollbar-thumb {
     background: var(--blue);
-    border-radius: 10px;
+    border-radius: 5px;
     border: 2px solid white;
   }
   
   /* Handle on hover */
   ::-webkit-scrollbar-thumb:hover {
     background: var(--green);
-    border-radius: 10px;
+    border-radius: 5px;
   }
