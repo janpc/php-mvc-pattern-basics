@@ -10,6 +10,7 @@
     <link href="https://fonts.googleapis.com/icon?family=Material+Icons"
       rel="stylesheet">
     <link rel="stylesheet" href="assets/css/song.css">
+    <script defer src="assets/js/playSongs.js"></script>
     
 </head>
 <body>
@@ -18,7 +19,7 @@
         echo "<div class='mainSong' >
                 <div class='mainSong__image' style='background-image: url(" . $song['cover'] . ");' href='index.php?controller=song&id=". $song['song_id'] . "'>
                     <div class='mainSong__play__background'>
-                        <button class='material-icons mainSong__play' data-src='" . './music/' . $song['src'] ."'>play_arrow</button>
+                        <button id='mainSongPlay' class='material-icons mainSong__play' data-src='" . './music/' . $song['src'] ."'>play_arrow</button>
                     </div>
                 </div>
                 <h2 class='mainSong__title'>" .

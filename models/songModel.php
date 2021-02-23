@@ -27,6 +27,11 @@ function getAll()
     return $data;
 }
 
+
+
+
+
+
 function getById($id)
 {
 
@@ -51,6 +56,11 @@ function getById($id)
     return $data;
 }
 
+
+
+
+
+
 function getArtists()
 {
     $data = null;
@@ -70,6 +80,12 @@ function getArtists()
 
     return $data;
 }
+
+
+
+
+
+
 
 function add($name, $cover, $album, $artists, $song)
 {
@@ -108,6 +124,12 @@ function add($name, $cover, $album, $artists, $song)
     }
 }
 
+
+
+
+
+
+
 function update($id, $name, $cover, $album, $artists){
 
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
@@ -127,6 +149,11 @@ function update($id, $name, $cover, $album, $artists){
     $database->close();
 }
 
+
+
+
+
+
 function delete($id){
     $database = new mysqli("localhost", "root", "", "php-mvc-pattern-basics");
 
@@ -144,6 +171,8 @@ function delete($id){
 
     $database->close();
 }
+
+
 
 
 
