@@ -16,16 +16,16 @@
 <body>
     <?php
         include './assets/html/header.html';
-        echo "<div class='mainSong' >
-                <div class='mainSong__image' style='background-image: url(" . $song['cover'] . ");' href='index.php?controller=song&id=". $song['song_id'] . "'>
-                    <div class='mainSong__play__background'>
-                        <button id='mainSongPlay' class='material-icons mainSong__play' data-src='" . './music/' . $song['src'] ."'>play_arrow</button>
+        echo '<div class="mainSong" >
+                <div class="mainSong__image" style="background-image: url(' . $song["cover"] . ');" href="index.php?controller=song&id='. $song["song_id"] . '">
+                    <div class="mainSong__play__background">
+                        <button id="mainSongPlay" class="material-icons mainSong__play" data-src="' . './music/' . $song["src"] .'">play_arrow</button>
                     </div>
                 </div>
-                <h2 class='mainSong__title'>" .
-                    $song['song_name']
-                . "</h2>
-                <div class='mainSong__artist__list'>";
+                <h2 class="mainSong__title">' .
+                    $song["song_name"]
+                . '</h2>
+                <div class="mainSong__artist__list">';
 
         foreach ($song['artist'] as $artist) {
             echo "<a class='mainSong__artist'  href='index.php?controller=artist&id=". $artist['artist_id'] . "'>
