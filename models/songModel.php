@@ -111,7 +111,6 @@ function add($name, $cover, $album, $artists, $song)
                 $query .= "(" . $id . ", " . $artist . "),";
             }
             $query = substr($query, 0, -1);
-            echo $query;
 
             if ($database->query($query)) {
                 return null;
@@ -141,7 +140,64 @@ function update($id, $name, $cover, $album, $artists){
     $query = "UPDATE songs SET song_name = '" . $name . "', cover = '" . $cover . "', album = '" . $album . "' WHERE song_id = '" . $id . "'";
 
     if ($database->query($query)) {
-        return null;
+        
+        $query = "SELECT * FROM `artist_song` WHERE song_id = " . $id;
+        if ($actualArtists = $database->query($query)) {
+            $haveToDelete = false;
+            $delete = "DELETE FROM artist_song WHERE song_id = " . $id . " AND artist_id IN (";
+            if( $actualArtists!= null ){
+                foreach ($actualArtists as $actualArtist){
+                    $isInside = false;
+                    foreach($artists as $artist){
+                        if($artist == $actualArtist['artist_id']){
+                            $isInside=true;
+                            break;
+                        }
+                    }
+                    if(!$isInside){
+                        $delete .= $actualArtist['artist_id'] .", ";
+                        $haveToDelete = true;
+                    }
+                }
+                $delete = substr($delete, 0, -2);
+                $delete .= ")";
+
+                if($haveToDelete){
+                    if(!$database->query($delete)){
+                       return "Error upadating the artists1.";
+                    }
+                }
+                $add = "INSERT INTO artist_song (song_id, artist_id) VALUES ";
+                $haveToAdd = false;
+                foreach ($artists as $artist){
+                    $isInside = false;
+                    foreach($actualArtists as $actualArtist){
+                        if($artist == $actualArtist['artist_id']){
+                            $isInside=true;
+                            break;
+                        }
+                    }
+                    if(!$isInside){
+                        $add .= "(" . $id . ", " . $artist . "), ";
+                        $haveToAdd = true;
+                    }
+                }
+
+                $add = substr($add, 0, -2);
+                if($haveToAdd){
+                    if($database->query($add) ){
+                        return null;
+                    } else {
+                        return $add;
+                        return "Error upadating the artists.";
+                    }
+                }else{
+                    return null;
+                }
+            }
+        }else {
+            return "Error upadating the song information.";
+        }
     } else {
         return "Error upadating the song information.";
     }

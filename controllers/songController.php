@@ -24,6 +24,8 @@ if (isset($_GET['action'])) {
     getAllSongs();
 }
 
+//call_user_func($_REQUEST['action'], $_REQUEST);
+
 
 /* ~~~ CONTROLLER FUNCTIONS ~~~ */
 
@@ -38,7 +40,7 @@ function getAllSongs()
         error($data);
     } else {
         $view = VIEWS . 'song/songDashboard.php';
-        include $view;
+        require_once $view;
     }
 
 
@@ -56,7 +58,7 @@ function getSongs($id)
         error($song);
     } else {
         $view = VIEWS . 'song/song.php';
-        include $view;
+        require_once $view;
     }
 }
 
@@ -68,7 +70,7 @@ function showFormAdd()
         error($artists);
     } else {
         $view = VIEWS . 'song/addSong.php';
-        include $view;
+        require_once $view;
     }
 }
 
@@ -97,7 +99,7 @@ function showFormUpdate($id)
             error($artists);
         } else {
             $view = VIEWS . 'song/addSong.php';
-            include $view;
+            require_once $view;
         }
     }
 }
@@ -131,5 +133,5 @@ function deleteSong($id)
 function error($errorMsg)
 {
     $error = $errorMsg;
-    include VIEWS . "error/error.php";
+    require_once VIEWS . "error/error.php";
 }
