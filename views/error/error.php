@@ -13,7 +13,7 @@
 <body>
     <?php
         include './assets/html/header.html';
-
+        print_r($error);
         echo "<section class='error'>" .
                 $error
             . "</section>";
