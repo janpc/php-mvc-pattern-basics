@@ -35,7 +35,7 @@
             echo "</div></article>";
         }
         echo "</section>
-        <a class='material-icons addButton' href='index.php?controller=song&action=formAdd'> add </a>";
+        <a class='material-icons addButton' href='index.php?controller=song&action=showFormAdd'> add </a>";
     ?> 
 </body>
 </html>

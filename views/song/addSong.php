@@ -16,7 +16,7 @@
 
         if(!isset($song)){
             echo "<section class='addSong'>
-            <form action='index.php?controller=song&action=add' method='post' enctype='multipart/form-data'>
+            <form action='index.php?controller=song&action=addSong' method='post' enctype='multipart/form-data'>
                 <label for='name'>Song name:</label><br>
                 <input type='text' id='name' name='name' maxlength='50' required><br>
                 <label for='cover'>Cover link:</label><br>
@@ -37,7 +37,7 @@
                 </section>";
         } else{
             echo "<section class='addSong'>
-            <form action='index.php?controller=song&action=update&id=" . $song['song_id'] . "' method='post' enctype='multipart/form-data'>
+            <form action='index.php?controller=song&action=updateSong&id=" . $song['song_id'] . "' method='post' enctype='multipart/form-data'>
                 <label for='name'>Song name:</label><br>
                 <input type='text' id='name' name='name' maxlength='50' value='" . $song['song_name'] . "' required><br>
                 <label for='cover'>Cover link:</label><br>
@@ -65,7 +65,7 @@
                     <input type='submit' value='Submit'>
                 </form>
                 </section>";
-            echo "<a class='material-icons deleteButton' href='index.php?controller=song&action=delete&id=" . $song['song_id'] . "'> delete </a>";
+            echo "<a class='material-icons deleteButton' href='index.php?controller=song&action=deleteSong&id=" . $song['song_id'] . "'> delete </a>";
         }
         
     ?>

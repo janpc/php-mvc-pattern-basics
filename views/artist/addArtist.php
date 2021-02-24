@@ -15,7 +15,7 @@
         include './assets/html/header.html';
         if(!isset($artist)){
             echo "<section class='addArtist'>
-                <form action='index.php?controller=artist&action=add' method='post' enctype='multipart/form-data'>
+                <form action='index.php?controller=artist&action=addArtist' method='post' enctype='multipart/form-data'>
                     <label for='name'>Name:</label><br>
                     <input type='text' id='name' name='name' maxlength='50' required><br>
                     <label for='image'>Image link:</label><br>
@@ -27,7 +27,7 @@
                 </section>";
         } else{
             echo "<section class='addArtist'>
-                <form action='index.php?controller=artist&action=update&id=" . $artist['artist_id'] . "' method='post' enctype='multipart/form-data'>
+                <form action='index.php?controller=artist&action=updateArtist&id=" . $artist['artist_id'] . "' method='post' enctype='multipart/form-data'>
                     <label for='name'>Name:</label><br>
                     <input type='text' id='name' name='name' maxlength='50' value=" . $artist['artist_name'] . " required><br>
                     <label for='image'>Image link:</label><br>
@@ -37,7 +37,7 @@
                     <input type='submit' value='Submit'>
                 </form>
                 </section>";
-            echo "<a class='material-icons deleteButton' href='index.php?controller=artist&action=delete&id=" . $artist['artist_id'] . "'> delete </a>";
+            echo "<a class='material-icons deleteButton' href='index.php?controller=artist&action=deleteArtist&id=" . $artist['artist_id'] . "'> delete </a>";
         }
     ?>
 </body>

@@ -7,19 +7,9 @@ require_once MODELS . "songModel.php";
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'formAdd') {
-        showFormAdd();
-    } else if ($_GET['action'] == 'add') {
-        addSong();
-    } else if ($_GET['action'] == 'formUpdate') {
-        showFormUpdate($_GET['id']);
-    } else if ($_GET['action'] == 'update') {
-        updateSong($_GET['id']);
-    } else if ($_GET['action'] == 'delete') {
-        deleteSong($_GET['id']);
-    }
+    call_user_func($_GET['action'], $_REQUEST);
 } else if (isset($_GET['id'])) {
-    getSongs($_GET['id']);
+    getSong($_GET['id']);
 } else {
     getAllSongs();
 }
@@ -50,7 +40,7 @@ function getAllSongs()
 /**
  * This function calls the corresponding model function and includes the corresponding view
  */
-function getSongs($id)
+function getSong($id)
 {
     $song = getById($id);
 
@@ -74,9 +64,9 @@ function showFormAdd()
     }
 }
 
-function addSong()
+function addSong($REQUEST)
 {
-    $error = add($_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists'], $_FILES["song"]);
+    $error = add($REQUEST['name'], $REQUEST['cover'], $REQUEST['album'], $REQUEST['artists'], $_FILES["song"]);
 
     if ($error != null) {
         error($error);
@@ -85,16 +75,15 @@ function addSong()
     }
 }
 
-function showFormUpdate($id)
+function showFormUpdate($REQUEST)
 {
 
-    $song = getById($id);
+    $song = getById($REQUEST['id']);
     $artists = getArtists();
 
     if (gettype($song) == 'string') {
         error($song);
     } else {
-
         if (gettype($artists) == 'string') {
             error($artists);
         } else {
@@ -104,9 +93,9 @@ function showFormUpdate($id)
     }
 }
 
-function updateSong($id)
+function updateSong($REQUEST)
 {
-    $error = update($id, $_POST['name'], $_POST['cover'], $_POST['album'], $_POST['artists']);
+    $error = update($REQUEST['id'], $REQUEST['name'], $REQUEST['cover'], $REQUEST['album'], $REQUEST['artists']);
 
     if ($error != null) {
         error($error);
@@ -115,9 +104,9 @@ function updateSong($id)
     }
 }
 
-function deleteSong($id)
+function deleteSong($REQUEST)
 {
-    $error = delete($id);
+    $error = delete($REQUEST['id']);
 
     if ($error != null) {
         error($error);

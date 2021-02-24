@@ -34,7 +34,7 @@
                 </a>";
         }
         echo "</div></div>";
-        echo "<a class='material-icons editButton' href='index.php?controller=song&action=formUpdate&id=" . $song['song_id'] . "'> edit </a>";
+        echo "<a class='material-icons editButton' href='index.php?controller=song&action=showFormUpdate&id=" . $song['song_id'] . "'> edit </a>";
     ?>
 </body>
 </html>

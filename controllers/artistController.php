@@ -7,17 +7,7 @@ require_once MODELS . "artistModel.php";
 //Keep in mind that the function to be executed has to be one of the ones declared in this controller
 // TODO Implement the logic
 if (isset($_GET['action'])) {
-    if ($_GET['action'] == 'formAdd') {
-        showFormAdd();
-    } else if ($_GET['action'] == 'add') {
-        addArtist();
-    } else if ($_GET['action'] == 'formUpdate') {
-        showFormUpdate($_GET['id']);
-    } else if ($_GET['action'] == 'update') {
-        updateSong($_GET['id']);
-    } else if ($_GET['action'] == 'delete') {
-        deleteArtist($_GET['id']);
-    }
+    call_user_func($_GET['action'], $_REQUEST);
 } else if (isset($_GET['id'])) {
     getArtist($_GET['id']);
 } else {
@@ -63,9 +53,9 @@ function showFormAdd()
     include $view;
 }
 
-function addArtist()
+function addArtist($REQUEST)
 {
-    $error = add($_POST['name'], $_POST['image'], $_POST['info']);
+    $error = add($REQUEST['name'], $REQUEST['image'], $REQUEST['info']);
     if ($error == null) {
         header('Location: index.php?controller=artist');
     } else {
@@ -73,9 +63,9 @@ function addArtist()
     }
 }
 
-function showFormUpdate($id)
+function showFormUpdate($REQUEST)
 {
-    $artist = getById($id);
+    $artist = getById($REQUEST['id']);
 
     if (gettype($artist) == 'string') {
         error($artist);
@@ -85,9 +75,9 @@ function showFormUpdate($id)
     }
 }
 
-function updateSong($id)
+function updateArtist($REQUEST)
 {
-    $error = update($id, $_POST['name'], $_POST['image'], $_POST['info']);
+    $error = update($REQUEST['id'], $REQUEST['name'], $REQUEST['image'], $REQUEST['info']);
     if ($error == null) {
         header('Location: index.php?controller=artist');
     } else {
@@ -95,9 +85,9 @@ function updateSong($id)
     }
 }
 
-function deleteArtist($id)
+function deleteArtist($REQUEST)
 {
-    $error = delete($id);
+    $error = delete($REQUEST['id']);
 
     if ($error != null) {
         error($error);
